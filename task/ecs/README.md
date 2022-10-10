@@ -19,10 +19,10 @@ The `main.tf` file provides sample inputs (i.e. it uses the outputs from the vpc
 enable_ssl: a terraform boolean to enable or disable building the resources needed for ssl access to the hello-world application. This is disabled by default.  
 example: false
 
-private_subnets: a terraform list of aws subnet ids from the vpc public network, in cidr notation.  
+private_subnets: a terraform list of aws subnet ids from the vpc public network.  
 example: ["subnet-b46032ec", "subnet-a46032fc", "subnet-03f720e7de"]
 
-public_subnets: a terraform list of aws subnet ids from the vpc private network, in cidr notation.  
+public_subnets: a terraform list of aws subnet ids from the vpc private network.  
 example: ["subnet-b46032ec", "subnet-a46032fc", "subnet-03f720e7de"]
 
 After populating the inputs above, you should be able to run the usual `terraform plan` and `terraform apply` to create the hello-world app. This should result in a new ecs cluster and application load balancer (plus some supporting resources and access over https, if enabled).
