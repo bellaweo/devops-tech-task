@@ -5,5 +5,5 @@ output "hello_world_hostname" {
 
 output "acmpca_root_ca" {
   description = "aws acm pca root ca certificate"
-  value       = var.enable_ssl ? aws_acmpca_certificate_authority.fake[0].certificate : "n/a"
+  value       = var.enable_ssl ? aws_acmpca_certificate_authority.fake[0].certificate : null
 }

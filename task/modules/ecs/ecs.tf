@@ -3,7 +3,7 @@
 # this is because aws charges $400+ to run their certificate authority
 
 locals {
-  depends = var.enable_ssl ? "\"aws_alb_listener.http_redirect\", \"aws_alb_listener.https\"" : "aws_alb_listener.http"
+  depends = var.enable_ssl ? "\"aws_alb_listener.http_redirect[0]\", \"aws_alb_listener.https[0]\"" : "aws_alb_listener.http[0]"
 }
 
 data "aws_region" "current" {}
@@ -119,6 +119,11 @@ resource "aws_ecs_service" "self" {
     target_group_arn = aws_alb_target_group.self.arn
     container_name   = "hello-world"
     container_port   = 80
+  }
+
+  deployment_circuit_breaker {
+    enable   = true
+    rollback = true
   }
 
   lifecycle {
